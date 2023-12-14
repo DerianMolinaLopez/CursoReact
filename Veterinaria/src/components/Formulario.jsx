@@ -1,24 +1,47 @@
 import { useState, useEffect } from "react";
-function Formulario() {
+import Error from "./Error";
+/*
+*en react es necesario que cuando tengas un arreglo
+*no modifiques el original
+*realiza una copia y en esa copia debes
+*agregar los nuevos elementos
+*/
+
+
+function Formulario({setPacientes,pacientes}) {
   const [nombre, setNombre] = useState('');//mi funcion de estado para las citas
   const [propietario, setPropietario] = useState('');
   const [email, setEmail] = useState('');
   const [fecha, setFecha] = useState('');
   const [erorr, setError] = useState(false);
   const [sintomas, setSintomas] = useState('');
-  console.log(nombre);
-  console.log(propietario);
-  console.log(email);
+ 
   const handleSumbit = (e) => {
+    e.preventDefault();
     if ([nombre, propietario, email, fecha, sintomas].includes('')) {
       console.log("hay almenos un campo vacio")
       setError(true);
     } else {
       console.log("todo esta lleno")
       setError(false);
+      const objetoPaciente = {
+        nombre,
+        propietario,
+        email,
+        fecha,
+        sintomas
+      }
+      setPacientes([...pacientes, objetoPaciente])
+      /*formateamos todo el formulario */
+      setNombre('')
+      setEmail('')
+      setPropietario('')
+      setFecha('')
+      setSintomas('')
     }
-    e.preventDefault();
+    
   }
+  
   //setNombre('Derian ')
   /*
   REGLAS PARA USAR LOS HOOKS
@@ -39,16 +62,10 @@ function Formulario() {
         onSubmit={(e) => { handleSumbit(e) }}
         action="">
         <div>
-          {erorr &&(
-             <div className="bg-red-700 text-white uppercase text-center p-3 mb-3 rounded font-bold">
-            <h2>hay un error</h2>
-            </div>)}
-          <label htmlFor="mascota" className="block text-gray-700 uppercase font-bold  ">Nombre de la mascota</label>
-          <input type="text" name="" placeholder="Nombre de la mascota" id="mascota"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-700 rounded-md"
-            value={nombre}
-            onChange={(e) => { setNombre(e.target.value) }}
-          />
+          {erorr && <Error>
+            <p>Todos los campos son obligatorios</p>
+            <h3>esto es un h3 del padre</h3>
+            </Error>}
         </div>
 
         <div>
@@ -59,6 +76,15 @@ function Formulario() {
             onChange={(e) => { setPropietario(e.target.value) }}
           />
         </div>
+        <div>
+                <label htmlFor="mascota" className="block text-gray-700 uppercase font-bold  ">Nombre de la mascota</label>
+            <input type="text" name="" placeholder="Nombre de la mascota" id="mascota"
+                className="border-2 w-full p-2 mt-2 placeholder-gray-700 rounded-md"
+                value={nombre}
+                onChange={(e) => { setNombre(e.target.value) }}
+            />
+        </div>
+  
 
 
         <div>
@@ -94,4 +120,5 @@ function Formulario() {
     </div>
   )
 }
+
 export default Formulario;

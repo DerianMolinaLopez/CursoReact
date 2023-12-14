@@ -1,3 +1,10 @@
+/*
+las props de un componente, solamente pueden ser enviados
+del padre hacia el hijo
+
+se pueden comunicar al reves pero necesitarias de funciones auxiliares
+no es de forma directa
+*/
 function Header (){
     //mediaqueryes se aplica por medio de md:...argumentos...
     return (

@@ -8,20 +8,37 @@ import Error from "./Error";
 */
 
 
-function Formulario({setPacientes,pacientes}) {
+function Formulario({setPacientes,pacientes,paciente}) {
   const [nombre, setNombre] = useState('');//mi funcion de estado para las citas
   const [propietario, setPropietario] = useState('');
   const [email, setEmail] = useState('');
   const [fecha, setFecha] = useState('');
   const [erorr, setError] = useState(false);
   const [sintomas, setSintomas] = useState('');
+  /*
+  !como estoy leyendo mi objeot de pacientes desde este formulario
+  !va a realizar varios renders en caso de no usar useEffect
+  !debido a que por cada modificacion en el mismo, se vuelve a 
+  !renderizar
+  */
+
+  //*esta es la estructura simple de lo que es el useEffect
+  /**
+  **sirve como un oyente de un cambio en una variable, esas son
+  **las dependencias que esta en el arreglo que acompaña a esa
+  **estructura
+  **lo que esta en el cuerpo son los cambio que realizar cuando las dependencias tenan un cambio
+  */
+ useEffect(()=>{
+    console.log(paciente)
+ },[paciente])
 
   const generarId = ()=>{
-    const random = Math.random.toString(36).substring(2)
-    const fecha = Date.now().toString(36)
-    return random+fecha
+    const random = Math.random().toString(36).substring(2);
+    const fecha = Date.now().toString(36);
+    return random+fecha;
   }
- 
+  
   const handleSumbit = (e) => {
     e.preventDefault();
     if ([nombre, propietario, email, fecha, sintomas].includes('')) {

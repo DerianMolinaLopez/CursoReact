@@ -1,5 +1,13 @@
 import Paciente from "./Paciente";
-const ListadoPacientes = ({pacientes,setPaciente,paciente}) => {
+import { useEffect } from "react";
+const ListadoPacientes = ({pacientes,setPaciente}) => {
+     useEffect(()=>{
+        
+       console.log(pacientes[pacientes.length-1])
+     }
+     ,[pacientes])
+
+
     console.log(pacientes)
     return(
         <>
@@ -19,7 +27,9 @@ const ListadoPacientes = ({pacientes,setPaciente,paciente}) => {
                     
                         <Paciente
                         key ={paciente.id} 
-                        paciente={paciente}></Paciente>
+                        paciente={paciente}
+                        setPaciente={setPaciente}
+                        ></Paciente>
                     )
                 )
             }

@@ -1,8 +1,8 @@
 
 
-const Paciente = ({paciente}) => {
+const Paciente = ({paciente,setPaciente}) => {
     
-    console.log(paciente)
+    
     const {nombre,propietario,email,fecha,sintomas} =paciente
   return (
     <div className="m-3 shadow-md px-5 py-10 rounded-xl bg-white">
@@ -30,7 +30,10 @@ const Paciente = ({paciente}) => {
         <button
         className="py-2 px-10 bg-indigo-600 hover:bg-indigo-700 text-white font-bold uppercase
                    rounded-lg" 
-        type="button">
+        type="button"
+        onClick={()=>{
+            setPaciente(paciente)
+        }}>
             Editar
         </button>
         <button

@@ -15,6 +15,12 @@ function Formulario({setPacientes,pacientes}) {
   const [fecha, setFecha] = useState('');
   const [erorr, setError] = useState(false);
   const [sintomas, setSintomas] = useState('');
+
+  const generarId = ()=>{
+    const random = Math.random.toString(36).substring(2)
+    const fecha = Date.now().toString(36)
+    return random+fecha
+  }
  
   const handleSumbit = (e) => {
     e.preventDefault();
@@ -29,7 +35,8 @@ function Formulario({setPacientes,pacientes}) {
         propietario,
         email,
         fecha,
-        sintomas
+        sintomas,
+        id:generarId()
       }
       setPacientes([...pacientes, objetoPaciente])
       /*formateamos todo el formulario */

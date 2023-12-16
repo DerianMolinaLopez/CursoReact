@@ -5,6 +5,7 @@ import ListadoPacientes from './components/ListadoPacientes'
 import './index.css'
 function App() {
   const [pacientes,setPacientes]=useState([]);
+  const [paciente,setPaciente] = useState({})
 //mx--> margen horizontal
 //my -->margen vertical
 
@@ -13,7 +14,10 @@ function App() {
     <Header></Header>
     <div className='mt-12 md:flex'>
         <Formulario pacientes={pacientes} setPacientes={setPacientes}/>
-        <ListadoPacientes pacientes = {pacientes}/>
+        <ListadoPacientes 
+        paciente={paciente}
+        setPaciente ={setPaciente}
+        pacientes = {pacientes}/>
       
     </div>
     

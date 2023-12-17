@@ -29,10 +29,29 @@ function Formulario({setPacientes,pacientes,paciente}) {
   **estructura
   **lo que esta en el cuerpo son los cambio que realizar cuando las dependencias tenan un cambio
   */
- useEffect(()=>{
-    console.log(paciente)
- },[paciente])
 
+  //este efecto se dispara en cuanto se el da click al boton de editar al componente de paciente
+
+  //este efecto se aplica al coponente de donde se origina el evento asi 
+
+  //asi que no hay que pensarle demaciado de donde es que ese esta originadno
+
+  //este effect, agarra los valores del objeto y lo madna a los inputs del formulario
+   useEffect(()=>{
+    if(Object.keys(paciente).length>0){
+      //console.log("hay algo")->este solamente brinca cuano se le da click al componente
+      const{nombre,propietario,email,fecha,sintomas}=paciente
+      //console.log(paciente)
+      setNombre(nombre)
+      setPropietario(propietario)
+      setEmail(email)
+      setFecha(fecha)
+      setSintomas(sintomas)
+    }else{
+      console.log("esta vacio")
+    }
+
+   },[paciente])
   const generarId = ()=>{
     const random = Math.random().toString(36).substring(2);
     const fecha = Date.now().toString(36);
@@ -55,13 +74,20 @@ function Formulario({setPacientes,pacientes,paciente}) {
         sintomas,
         id:generarId()
       }
-      setPacientes([...pacientes, objetoPaciente])
+     
       /*formateamos todo el formulario */
       setNombre('')
       setEmail('')
       setPropietario('')
       setFecha('')
       setSintomas('')
+    }
+
+    if(paciente.id){
+       //edicion de un registro ya existente
+    }else{
+      setPacientes([...pacientes, objetoPaciente])
+    //arefgando un registro que aun no existe  
     }
     
   }
@@ -137,7 +163,7 @@ function Formulario({setPacientes,pacientes,paciente}) {
           ></textarea>
         </div>
         <input type="submit" className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-all"
-          value="Agregar paciente" />
+          value={paciente ? "Editar paciente":"Agreagar paciente"} />
 
 
       </form>

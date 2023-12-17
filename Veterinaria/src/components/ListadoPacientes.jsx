@@ -1,14 +1,15 @@
 import Paciente from "./Paciente";
 import { useEffect } from "react";
 const ListadoPacientes = ({pacientes,setPaciente}) => {
-     useEffect(()=>{
+    
+    /*useEffect(()=>{
         
        console.log(pacientes[pacientes.length-1])
      }
      ,[pacientes])
+*/
 
-
-    console.log(pacientes)
+    //console.log(pacientes)
     return(
         <>
         <div className="md:w-1/2 lg:w-2/5 md:h-screen mx-5 my-10c overflow-scroll ">

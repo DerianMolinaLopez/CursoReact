@@ -63,16 +63,15 @@ function Formulario({setPacientes,pacientes,paciente}) {
     if ([nombre, propietario, email, fecha, sintomas].includes('')) {
       console.log("hay almenos un campo vacio")
       setError(true);
-    } else {
-      console.log("todo esta lleno")
+    } 
+      //console.log("todo esta lleno")
       setError(false);
-      const objetoPaciente = {
+      const objetoPaciente = {//este es el bojeto en memoria que leemos en el formularo0
         nombre,
         propietario,
         email,
         fecha,
-        sintomas,
-        id:generarId()
+        sintomas
       }
      
       /*formateamos todo el formulario */
@@ -81,11 +80,38 @@ function Formulario({setPacientes,pacientes,paciente}) {
       setPropietario('')
       setFecha('')
       setSintomas('')
-    }
+    
 
     if(paciente.id){
+      objetoPaciente.id = paciente.id
+
+      //identificamos que registro es el que estamos editando asi que hacemos un mapeo del arreglo de pacientes
+
+      const pacientesActualizados 
+                                 = pacientes.map(
+                                   pacientesState => pacientesState.id === paciente.id 
+                                   ? objetoPaciente:pacientesState)
+      setPacientes(pacientesActualizados)
+
+      /**
+       * EN RESUMEN
+       * selecciono que paciente es el que quiero actualizar
+       * entonces construyo el objeto con la informacion de los 
+       * inputs, despues de eso le agrego el id, del paciente que
+       * estoy actualizando
+       * 
+       * despues, mapeo el arreglo de pacientes identificando cual es el que estoy
+       * editando por medio de su id
+       * si encuentra el valor, entonces voy a mandar obetoPaciente
+       * que  es lo que estoy leyendo al actualizar
+       * si no. entronces retorno pacienteState, el cual 
+       * son los elementos que estan en el arreglo por defecto, osea
+       * los que no voy a modificar
+       */
+      //console.log(objetoPaciente)
        //edicion de un registro ya existente
     }else{
+      objetoPaciente.id=generarId()
       setPacientes([...pacientes, objetoPaciente])
     //arefgando un registro que aun no existe  
     }

@@ -1,0 +1,17 @@
+  /**
+       * EN RESUMEN
+       * selecciono que paciente es el que quiero actualizar
+       * entonces construyo el objeto con la informacion de los 
+       * inputs, despues de eso le agrego el id, del paciente que
+       * estoy actualizando
+       * 
+       * despues, mapeo el arreglo de pacientes identificando cual es el que estoy
+       * editando por medio de su id
+       * si encuentra el valor, entonces voy a mandar obetoPaciente
+       * que  es lo que estoy leyendo al actualizar
+       * si no. entronces retorno pacienteState, el cual 
+       * son los elementos que estan en el arreglo por defecto, osea
+       * los que no voy a modificar
+       */
+      //console.log(objetoPaciente)
+       //edicion de un registro ya existente

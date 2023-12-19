@@ -63,36 +63,25 @@ function Formulario({setPacientes,pacientes,paciente}) {
     if ([nombre, propietario, email, fecha, sintomas].includes('')) {
       console.log("hay almenos un campo vacio")
       setError(true);
+      setTimeout(() => {setError(false)}, 3000);
+      return; // Retorna temprano para evitar agregar el paciente
     } 
-      //console.log("todo esta lleno")
-      setError(false);
-      const objetoPaciente = {//este es el bojeto en memoria que leemos en el formularo0
-        nombre,
-        propietario,
-        email,
-        fecha,
-        sintomas
-      }
-     
-      /*formateamos todo el formulario */
-      setNombre('')
-      setEmail('')
-      setPropietario('')
-      setFecha('')
-      setSintomas('')
-    
 
-    if(paciente.id){
-      objetoPaciente.id = paciente.id
+    setError(false); // Si todos los campos están llenos, establece el error a false
 
-      //identificamos que registro es el que estamos editando asi que hacemos un mapeo del arreglo de pacientes
+    const objetoPaciente = {
+      nombre,
+      propietario,
+      email,
+      fecha,
+      sintomas
+    }
 
-      const pacientesActualizados 
-                                 = pacientes.map(
-                                   pacientesState => pacientesState.id === paciente.id 
-                                   ? objetoPaciente:pacientesState)
-      setPacientes(pacientesActualizados)
-
+    setNombre('')
+    setEmail('')
+    setPropietario('')
+    setFecha('')
+    setSintomas('')
       /**
        * EN RESUMEN
        * selecciono que paciente es el que quiero actualizar
@@ -108,16 +97,18 @@ function Formulario({setPacientes,pacientes,paciente}) {
        * son los elementos que estan en el arreglo por defecto, osea
        * los que no voy a modificar
        */
-      //console.log(objetoPaciente)
-       //edicion de un registro ya existente
+    if(paciente.id){
+      objetoPaciente.id = paciente.id
+      const pacientesActualizados = pacientes.map(
+        pacientesState => pacientesState.id === paciente.id 
+        ? objetoPaciente:pacientesState)
+      setPacientes(pacientesActualizados)
     }else{
       objetoPaciente.id=generarId()
       setPacientes([...pacientes, objetoPaciente])
-    //arefgando un registro que aun no existe  
     }
-    
   }
-  
+
   //setNombre('Derian ')
   /*
   REGLAS PARA USAR LOS HOOKS
@@ -193,7 +184,7 @@ function Formulario({setPacientes,pacientes,paciente}) {
 
 
       </form>
-    </div>
+    </div> 
   )
 }
 

@@ -1,6 +1,6 @@
 import Paciente from "./Paciente";
 import { useEffect } from "react";
-const ListadoPacientes = ({pacientes,setPaciente}) => {
+const ListadoPacientes = ({pacientes,setPaciente, eliminacionPaciente}) => {
     
     /*useEffect(()=>{
         
@@ -26,10 +26,11 @@ const ListadoPacientes = ({pacientes,setPaciente}) => {
                 pacientes.map(
                     paciente=>(
                     
-                        <Paciente
+                        <Paciente 
                         key ={paciente.id} 
                         paciente={paciente}
                         setPaciente={setPaciente}
+                        eliminacionP={eliminacionPaciente}
                         ></Paciente>
                     )
                 )

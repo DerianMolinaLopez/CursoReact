@@ -39,6 +39,7 @@ function Formulario({setPacientes,pacientes,paciente}) {
   //este effect, agarra los valores del objeto y lo madna a los inputs del formulario
    useEffect(()=>{
     if(Object.keys(paciente).length>0){
+      
       //console.log("hay algo")->este solamente brinca cuano se le da click al componente
       const{nombre,propietario,email,fecha,sintomas}=paciente
       //console.log(paciente)

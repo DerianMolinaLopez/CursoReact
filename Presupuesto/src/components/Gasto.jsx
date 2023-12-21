@@ -16,7 +16,7 @@ import {LeadingActions,
       } from 'react-swipeable-list'
 
 
-const Gasto = ({gasto}) => {
+const Gasto = ({gasto,setGastoEditar}) => {
     const {nombre,categoria,cantidadGasto,id, fecha} = gasto
 //   console.log(cantidadGasto)
 const diccionarioIconos = {
@@ -30,7 +30,8 @@ const diccionarioIconos = {
 }
 const leadingActions = ()=>(//funcion de swipe de Izquierda
   <LeadingActions>
-    <SwipeAction onClick={()=> console.log("modificar")}>Modificar</SwipeAction>
+    <SwipeAction onClick={()=> {
+      setGastoEditar(gasto)}}>Modificar</SwipeAction>
   </LeadingActions>
 )
 const trailingActions = () => {

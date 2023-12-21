@@ -1,5 +1,5 @@
 import Header from "./components/Header"
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import ListadoGastos from "./components/ListadoGastos"
 import NuevoPresupuesto from "./components/NuevoPresupuesto"
 import NUevoGasto from "./img/nuevo-gasto.svg"
@@ -12,6 +12,14 @@ function App() {
   const [modal,setModal] = useState(false)
   const [animarModal,setAnimarModal] = useState(false)
   const [gastos,setGastos]=useState([])
+  const [gastoEditar, setGastoEditar] = useState({})
+
+
+  useEffect(()=>{
+    if(Object.keys(gastoEditar).length>0){//checamos si el objeto que queremos modificar, tiene al menos uno de sus propiedades
+       handleModal()
+    }
+  },[gastoEditar])
   const guardarGasto = gasto=>{ //construimos el gasto que sea enviado por el modal
 
      gasto.id=generarID()
@@ -45,6 +53,7 @@ function App() {
           <main>
             <ListadoGastos
              gastos={gastos}
+             setGastoEditar={setGastoEditar}
             ></ListadoGastos>
           </main>
             <div className="nuevo-gasto">

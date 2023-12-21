@@ -5,7 +5,8 @@ const Header = (
   {presupuesto, 
    setPresupuesto,
    isValid,
-   setIsValid
+   setIsValid,
+   gastos
   }
    ) => {
   return (
@@ -14,7 +15,9 @@ const Header = (
        {isValid ? (
         <div>
            <p>Control de presupuesto</p>
-           <ControlPresupuesto presupuesto ={presupuesto} ></ControlPresupuesto>
+           <ControlPresupuesto presupuesto ={presupuesto} 
+                                gastos ={gastos}
+            ></ControlPresupuesto>
         </div>
        
         

@@ -1,5 +1,17 @@
+import { useEffect, useState } from "react";
+const ControlPresupuestp = ({presupuesto,gastos}) => {
+  const [disponible,setDisponible] = useState(0)
+  const [gastado,setGastado] =useState(0) 
 
-const ControlPresupuestp = ({presupuesto}) => {
+   
+  useEffect(()=>{
+     const totalGastado = gastos.reduce((total,gasto)=>gasto.cantidadGasto +total, 0 )
+     setGastado(totalGastado)
+     const totalDisponible = presupuesto - totalGastado
+     setDisponible(totalDisponible  )
+   },[gastos])//establecemos el oyente por cualquier cambio que ocurra en gastos
+
+ // console.log(gastos+'desde control presupuesto')
   const formatearPresupuesto = (cantidad) => {
     return cantidad.toLocaleString('en-US', {
       style: 'currency',
@@ -17,10 +29,10 @@ const ControlPresupuestp = ({presupuesto}) => {
             <span>Presupuesto:</span> {formatearPresupuesto(presupuesto)}
         </p>
         <p>
-            <span>Disponible:</span> {formatearPresupuesto(presupuesto)}
+            <span>Disponible:</span> {formatearPresupuesto(disponible)}
         </p>
         <p>
-            <span>Gastado:</span> {formatearPresupuesto(presupuesto)}
+            <span>Gastado:</span> ${formatearPresupuesto(gastado)}
         </p>
         </div>
       

@@ -14,7 +14,8 @@ const Modal = ({setModal,animarModal,setAnimarModal,guardarGasto}) => {
       setTimeout(()=>{setMensaje('')},2000)
     return
    }   
-   //el caso de que haya pasado las valdiaciones
+   console.log(cantidadGasto)
+   
    guardarGasto({nombreGasto,cantidadGasto,categoria})
   } 
   const ocultarModal = () =>{

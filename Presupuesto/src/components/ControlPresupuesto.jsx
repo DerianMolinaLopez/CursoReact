@@ -6,7 +6,7 @@ const ControlPresupuestp = ({presupuesto}) => {
       currency: 'USD'
     });
   }
-  console.log(presupuesto)
+ // console.log(presupuesto)
   return (
     <div className='contenedor-presupuesto contenedor sombra dos-columnas'>
         <div>

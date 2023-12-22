@@ -16,9 +16,8 @@ import {LeadingActions,
       } from 'react-swipeable-list'
 
 
-const Gasto = ({gasto,setGastoEditar}) => {
-    const {nombre,categoria,cantidadGasto,id, fecha} = gasto
-//   console.log(cantidadGasto)
+const Gasto = ({gasto,setGastoEditar,handleModal}) => {
+    const {nombreGasto,categoria,cantidadGasto,id, fecha} = gasto
 const diccionarioIconos = {
     ahorro : IconoAhorro,
     comida :IconoComida,
@@ -37,8 +36,8 @@ const leadingActions = ()=>(//funcion de swipe de Izquierda
 const trailingActions = () => {
   return (
     <TrailingActions>
-      <SwipeAction onClick={() => console.log("eliminacion")}>
-        Eliminar
+      <SwipeAction onClick={()=>console.log("eliminacion")}>
+        Borrar
       </SwipeAction>
     </TrailingActions>
   );
@@ -55,7 +54,7 @@ const trailingActions = () => {
             alt="icono del gasto" />
         <div className='descripcion-gasto'>
             <p className='categoria'>{categoria}</p>
-            <p className='nombre-gasto'>{nombre}</p>
+            <p className='nombre-gasto'>{nombreGasto}</p>
             <p className='fecha-gasto'>
                 agregado el: {''}
                 <span>{formatearFecha(fecha)}</span>

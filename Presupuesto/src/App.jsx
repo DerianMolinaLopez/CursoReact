@@ -15,22 +15,39 @@ function App() {
   const [gastoEditar, setGastoEditar] = useState({})
 
 
+
   useEffect(()=>{
     if(Object.keys(gastoEditar).length>0){//checamos si el objeto que queremos modificar, tiene al menos uno de sus propiedades
-       handleModal()
+      setModal(true)
+      
+  
+      setTimeout(()=>{
+         setAnimarModal(true)
+      },100)
     }
   },[gastoEditar])
-  const guardarGasto = gasto=>{ //construimos el gasto que sea enviado por el modal
+  const guardarGasto = gasto => {
+    if(gasto.id){
+      // Modificamos si hay un id
+      const gastosActualizados = gastos.map(gastoState => {
+        // Si el id del gasto actual coincide con el id del gasto que estamos procesando, devolvemos el nuevo gasto. 
+        // De lo contrario, devolvemos el gasto sin cambios.
+        return gastoState.id === gasto.id ? gasto : gastoState;
+      });
+      setGastos(gastosActualizados);
+    } else {
+      // Creamos si no hay un id
+      gasto.id = generarID();
+      gasto.fecha = Date.now();
+      setGastos([...gastos, gasto]);
+    }
 
-     gasto.id=generarID()
-     gasto.fecha = Date.now()
-     setGastos([...gastos,gasto])
-   
-     setAnimarModal(false)
-     setTimeout(()=>{setModal(false)},500)
+    setAnimarModal(false);
+    setTimeout(() => {setModal(false)}, 500);
   }
   const handleModal = ()=>{
     setModal(true)
+    setGastoEditar({})
 
     setTimeout(()=>{
        setAnimarModal(true)
@@ -54,6 +71,7 @@ function App() {
             <ListadoGastos
              gastos={gastos}
              setGastoEditar={setGastoEditar}
+             handleModal={handleModal}
             ></ListadoGastos>
           </main>
             <div className="nuevo-gasto">
@@ -68,6 +86,7 @@ function App() {
         setModal = {setModal} 
         setAnimarModal={setAnimarModal}  
         setCantidad = {setCantidad}
+        gastoEditar={gastoEditar}
         animarModal={animarModal}
         guardarGasto = {guardarGasto}
         ></Modal>}

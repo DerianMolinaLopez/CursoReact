@@ -16,7 +16,7 @@ import {LeadingActions,
       } from 'react-swipeable-list'
 
 
-const Gasto = ({gasto,setGastoEditar,handleModal}) => {
+const Gasto = ({gasto,setGastoEditar,handleModal,eliminarGasto}) => {
     const {nombreGasto,categoria,cantidadGasto,id, fecha} = gasto
 const diccionarioIconos = {
     ahorro : IconoAhorro,
@@ -36,7 +36,9 @@ const leadingActions = ()=>(//funcion de swipe de Izquierda
 const trailingActions = () => {
   return (
     <TrailingActions>
-      <SwipeAction onClick={()=>console.log("eliminacion")}>
+      <SwipeAction  
+       destructive={true}
+       onClick={()=>eliminarGasto(id)}>
         Borrar
       </SwipeAction>
     </TrailingActions>

@@ -6,12 +6,16 @@ import NUevoGasto from "./img/nuevo-gasto.svg"
 import Modal from "./components/Modal"
 import { generarID } from "./helpers"
 function App() {
-  const [presupuesto,setPresupuesto] = useState(0)
+  const [presupuesto,setPresupuesto] = useState(
+   Number( localStorage.getItem('presupuesto')) ?? 0
+  )
   const [cantidad,setCantidad] = useState(0)
   const [isValid,setIsValid] = useState(false)
   const [modal,setModal] = useState(false)
   const [animarModal,setAnimarModal] = useState(false)
-  const [gastos,setGastos]=useState([])
+  const [gastos,setGastos]=useState(
+    localStorage.getItem('gastos') ? JSON.parse(localStorage.getItem('gastos')):[ ]
+    )
   const [gastoEditar, setGastoEditar] = useState({})
 
 
@@ -26,6 +30,31 @@ function App() {
       },100)
     }
   },[gastoEditar])
+
+    //para gaurdar los elementos en storage
+    useEffect(()=>{
+      localStorage.setItem('presupuesto',presupuesto ?? 0)
+    },[presupuesto])
+
+    useEffect(()=>{
+       localStorage.setItem('gastos',JSON.stringify(gastos)??[])
+    },[gastos])
+    
+    useEffect(()=>{
+        const presupuestoLS=Number(localStorage.getItem('presupuesto'))??0
+        if(presupuestoLS>0){
+          //si es mayor a cero, lo asignamos
+          setIsValid(true)
+        }
+    })
+
+
+  const eliminarGasto = id=>{
+    const gastosFiltrados = gastos.filter(gasto=> gasto.id!=id)
+    setGastos(gastosFiltrados)
+
+  }
+
   const guardarGasto = gasto => {
     if(gasto.id){
       // Modificamos si hay un id
@@ -35,6 +64,7 @@ function App() {
         return gastoState.id === gasto.id ? gasto : gastoState;
       });
       setGastos(gastosActualizados);
+      setGastoEditar({})
     } else {
       // Creamos si no hay un id
       gasto.id = generarID();
@@ -45,6 +75,8 @@ function App() {
     setAnimarModal(false);
     setTimeout(() => {setModal(false)}, 500);
   }
+
+
   const handleModal = ()=>{
     setModal(true)
     setGastoEditar({})
@@ -69,6 +101,7 @@ function App() {
           <>
           <main>
             <ListadoGastos
+            eliminarGasto={eliminarGasto}
              gastos={gastos}
              setGastoEditar={setGastoEditar}
              handleModal={handleModal}
@@ -83,6 +116,7 @@ function App() {
           
         )}
         {modal&& <Modal 
+        setGastoEditar={setGastoEditar}
         setModal = {setModal} 
         setAnimarModal={setAnimarModal}  
         setCantidad = {setCantidad}

@@ -45,7 +45,7 @@ function App() {
     useEffect(()=>{
      //filtramos los gastos por medio de la categoria
      const gastosFiltradosCategoria = gastos.filter(gasto=>gasto.categoria ==filtro)
-     //console.log(gastosFiltradosCategoria)
+   
     setGastosFiltrados(gastosFiltradosCategoria)
      
     },[filtro])
@@ -56,7 +56,7 @@ function App() {
           //si es mayor a cero, lo asignamos
           setIsValid(true)
         }
-    })
+    },[])
 
 
   const eliminarGasto = id=>{
@@ -101,6 +101,7 @@ function App() {
     <>
       <div className={modal ? 'fijar':''}> 
         <Header
+        setGastos ={setGastos}
         gastos = {gastos}
         presupuesto ={presupuesto}
         setPresupuesto={setPresupuesto}

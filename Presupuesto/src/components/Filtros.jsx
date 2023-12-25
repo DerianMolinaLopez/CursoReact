@@ -3,13 +3,10 @@ import React from 'react'
 
 const Filtros = ({filtro,setFiltro}) => {
 
-  useEffect(()=>{
-    console.log("el filtro fue actualizado: "+filtro)
-  },[filtro])
 
   const handleChange = (e) => {
     setFiltro(e.target.value);
-    console.log(filtro);
+   
   }
 
   return (

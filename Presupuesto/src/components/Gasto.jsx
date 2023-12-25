@@ -22,7 +22,7 @@ const diccionarioIconos = {
     ahorro : IconoAhorro,
     comida :IconoComida,
     casa : IconoCasa,
-    gastos : IconoGastos,
+    varios : IconoGastos,
     ocio : IconoOcio,
     salud : IconoSalud,
     suscripciones: IconoSuscripciones

@@ -11,8 +11,7 @@ const handlePresupuesto = (e)=>{
   }
   setMensaje('')
   setIsValid(true)
-  console.log(presupuesto)
-
+  
 }
 
   return (

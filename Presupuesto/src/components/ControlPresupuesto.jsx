@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { CircularProgressbar, buildStyles} from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
-const ControlPresupuestp = ({presupuesto,gastos}) => {
+const ControlPresupuestp = ({presupuesto,gastos,setGastos,setIsValid ,setPresupuesto}) => {
   const [disponible,setDisponible] = useState(0)
   const [gastado,setGastado] =useState(0) 
   const [porsentaje,setPorsentaje]=useState(0)
 
    
   useEffect(()=>{
-     const totalGastado = gastos.reduce((total,gasto)=>gasto.cantidadGasto +total, 0 )
+     const totalGastado = gastos.reduce((total,gasto)=> Number(gasto.cantidadGasto) +total, 0 )
      setGastado(totalGastado)
      const totalDisponible = presupuesto - totalGastado
 
@@ -23,14 +23,25 @@ const ControlPresupuestp = ({presupuesto,gastos}) => {
      setDisponible(totalDisponible  )
    },[gastos])//establecemos el oyente por cualquier cambio que ocurra en gastos
 
- // console.log(gastos+'desde control presupuesto')
+
+   const handleReiniciar = () =>{
+    const respeusta = confirm("¿estas seguro que quieres reiniciar la aplicacion?")
+    if(respeusta){
+      setGastos([])
+      setPresupuesto(0)
+      setIsValid(false)
+      
+    }
+   }
+
+
   const formatearPresupuesto = (cantidad) => {
     return cantidad.toLocaleString('en-US', {
       style: 'currency',
       currency: 'USD'
     });
   }
- // console.log(presupuesto)
+
   return (
     <div className='contenedor-presupuesto contenedor sombra dos-columnas'>
         <div>
@@ -45,7 +56,11 @@ const ControlPresupuestp = ({presupuesto,gastos}) => {
             calue={0}
             ></CircularProgressbar>
         </div>
+        
         <div className='contenido-presupuesto'> 
+        <button className="reset-app"
+          onClick={handleReiniciar}
+        >Resetear aplicacion</button>
         <p>
             <span>Presupuesto:</span> {formatearPresupuesto(presupuesto)}
         </p>

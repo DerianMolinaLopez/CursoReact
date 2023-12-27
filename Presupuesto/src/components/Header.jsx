@@ -15,7 +15,7 @@ const Header = (
       <h1>Planificado de gastos</h1>
        {isValid ? (
         <div>
-           <p>Control de presupuesto</p>
+           
            <ControlPresupuesto  setGastos ={setGastos}
                                 setPresupuesto ={setPresupuesto}
                                 setIsValid = {setIsValid}

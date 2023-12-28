@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import useSelectMonedas from '../hooks/useSelectMonedas'
-
+import { monedas } from '../data/monedas'
 const InputSubmit = styled.input`
     background-color: #9497ff;
     border:none;
@@ -20,10 +20,14 @@ const InputSubmit = styled.input`
 `
 
 const Formulario = () => {
-  const [SelectMonedas ]= useSelectMonedas() //de esta manera podemos mandar a llamar nuestro custom hook
-  SelectMonedas()
+  //arreglo de las monedas que tendremos como opciones
+ 
+  //!cuidado con las monedas
+  const [moneda,SelectMonedas ]= useSelectMonedas('Selecciona tu moneda',monedas) //de esta manera podemos mandar a llamar nuestro custom hook
+  console.log(moneda)
   return (
     <form>
+      <SelectMonedas></SelectMonedas>
         <InputSubmit type="submit" value='cotizar' />
       
     </form>

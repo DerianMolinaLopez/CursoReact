@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import Imagen from './img/imagen-criptos.png'
 import Formulario from './components/Formulario'
 import useSelectMonedas from './hooks/useSelectMonedas'
+import { useEffect, useState } from 'react'
 //con ese importe ya podemos crear styled components, el detalle s que creamos 
 //estilos como si fueran componentes de JSX
 
@@ -48,6 +49,27 @@ const Heading = styled.h1`
 
 `
 function App() {
+  const [monedas,setMonedas ]= useState({})
+  const [comparacion, setComparacion] = useState('')
+  useEffect(() => {//ejecutamos el codigo siempre y cuando hyaa algo en el objeto
+    //va a estar escuchando los cambios en monedas
+    if(Object.keys(monedas).length > 0) {
+        //ejecutamos una peticion a la api
+        const cotizarCripto = async () => {
+         // console.log(monedas)
+            const {moneda,criptoMoneda} = monedas
+            const url = `https://min-api.cryptocompare.com/data/price?fsym=${criptoMoneda}&tsyms=${moneda}`;
+         //   console.log(url)
+               //// `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cripto}&tsyms=${moneda}`
+            const respuesta = await fetch(url)
+            const resultado = await respuesta.json()
+            //console.log(resultado)
+            setComparacion(resultado)
+        }
+        cotizarCripto()
+
+    }
+  }, [monedas])
 
 
   return (
@@ -57,7 +79,7 @@ function App() {
         <Heading>
           Hola mundo
         </Heading>
-        <Formulario />
+        <Formulario comparacion={comparacion} setMonedas={setMonedas} monedasComparacion={monedas} />
       </div>
 
 

@@ -16,7 +16,7 @@ const useSelectMonedas = (label,monedas) => {
      const Select = styled.select`
       width: 100%;
       font-size: 18px;
-      padding: 14;
+      padding: 14px;
       border-radius: 10px;
       margin-bottom: 20px;
      `

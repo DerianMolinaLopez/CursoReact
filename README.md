@@ -22,7 +22,7 @@
 - Animaciones sencillas con `swipie`
 
 ## 3. Cotizador de Criptomonedas
-###Conocimientos adquiridos
+### Conocimientos adquiridos
 - Consultar una API por medio de un efecto
 - Styled components
 - Cutom hooks

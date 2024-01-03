@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import Layout from './components/Layout'
 import './index.css'
 import Index,{loader as clientesLoader} from './pages'
-import NuevoCliente from './pages/NuevoCliente'
+import NuevoCliente,{action as nuevoClienteAction} from './pages/NuevoCliente'
 //*para usar las funciones y el objeto es necesario instalar
 //*la libreria de routing que este disponible para react
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
@@ -22,6 +22,7 @@ import {createBrowserRouter,RouterProvider} from 'react-router-dom'
       {//este children es para que se pueda renderizar el header en todos los componentes
       path:'/clientes/nuevos',
       element: <NuevoCliente/>,
+      action: nuevoClienteAction
     }]
   }])
   //!tambien se puede hacer un archivo especificamente para las rutas

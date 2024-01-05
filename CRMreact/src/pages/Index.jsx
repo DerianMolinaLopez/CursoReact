@@ -12,7 +12,7 @@ export function loader(){
 const Index = () => {
 
   const datos = useLoaderData()
-  console.log(datos)
+ // console.log(datos)
   /*
   !el useLoaderData es una funcion que esta asociada
   !por por el routin, ahi se define el loader, y ese loader 

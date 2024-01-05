@@ -8,7 +8,13 @@ import { ErorrPage } from './components/ErrorPage'
 import NuevoCliente,{action as nuevoClienteAction} from './pages/NuevoCliente'
 //*para usar las funciones y el objeto es necesario instalar
 //*la libreria de routing que este disponible para react
-import {createBrowserRouter,RouterProvider} from 'react-router-dom'
+import {createBrowserRouter,redirect,RouterProvider} from 'react-router-dom'
+import {action as eliminarClienteAction} from './components/Cliente'
+
+
+export async function action({params}){
+  return redirect('/')
+}
 
   //*creamos el objeto de routing
   const router = createBrowserRouter( [{
@@ -33,6 +39,9 @@ import {createBrowserRouter,RouterProvider} from 'react-router-dom'
       loader: editarLoader,
       errorElement: <ErorrPage/>,
       action: actionModificarCliente
+    },{
+      path:'/clientes/:id/eliminar',
+      action: eliminarClienteAction
     }
   
   ]

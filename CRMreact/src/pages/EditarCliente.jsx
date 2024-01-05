@@ -4,9 +4,9 @@ import { Form, useNavigate,useLoaderData,useActionData,redirect } from 'react-ro
 import Error from '../components/Error'
 import Formulario from '../components/Formulario'
 export async function loader ({params}){
-   console.log(params)
+   //console.log(params)
    const cliente = await obtenerCliente(params.id)
-   console.log(cliente)
+   //console.log(cliente)
    if(Object.values(cliente).length===0){
     throw new Response("No se encontro el cliente", {status:404})   
 }
@@ -61,7 +61,7 @@ const EditarCliente = () => {
                <Formulario cliente={cliente}/>
                 <input 
                 className='text-white bg-blue-800 py-2 px-4 mt-5 rounded-md w-full uppercase font-bold hover:bg-blue-900'
-                type="submit" name="" id=""  value="Registrar cliente"/>
+                type="submit" name="" id=""  value="Modificar Cliente"/>
             </Form>
            
           </div>

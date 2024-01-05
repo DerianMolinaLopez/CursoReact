@@ -63,7 +63,7 @@ const NuevoCliente = () => {
 //useActionData para saber que es lo que me esta retornando el Action
 //que yo defini antes
   const errores = useActionData()
-  console.log(errores)
+  //console.log(errores)
 
 
   return (

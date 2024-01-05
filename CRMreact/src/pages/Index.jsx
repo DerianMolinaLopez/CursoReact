@@ -1,52 +1,12 @@
 import React from 'react'
 import {useLoaderData} from 'react-router-dom'
+import { obtenerClientes } from '../data/Clientes';
 import Cliente from '../components/Cliente';
 //*el hecho de usar un loader, es simulando un efecto cargando la informacion de golpe
 export function loader(){
-
-  const clientes = [
-    {
-        id: 1,
-        nombre: 'Juan',
-        telefono: 102013313,
-        email: "juan@juan.com",
-        empresa: 'Codigo Con Juan'
-    },
-    {
-        id: 2,
-        nombre: 'Karen',
-        telefono: 138198313,
-        email: "karen@juan.com",
-        empresa: 'Codigo Con Juan'
-    },
-    {
-        id: 3,
-        nombre: 'Josue',
-        telefono: 31983913,
-        email: "josue@juan.com",
-        empresa: 'Codigo Con Juan'
-    },
-    {
-        id: 4,
-        nombre: 'Miguel',
-        telefono: 319381983,
-        email: "miguel@juan.com",
-        empresa: 'Codigo Con Juan'
-    },
-    {
-        id: 5,
-        nombre: 'Pedro',
-        telefono: 1398198938,
-        email: "pedro@juan.com",
-        empresa: 'Codigo Con Juan'
-    },
-];
-
-
-    //una funcion que simula hacer una carga en el cambio de pagina para que pueda
-    //darle tiempo a la hora de hacer un efecto auxiliar
-    //!esta fallando obviamente por que aun no especifico que es lo que va a regresar
-    return clientes
+  
+  
+  return obtenerClientes()
 }
 
 const Index = () => {

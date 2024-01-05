@@ -1,6 +1,7 @@
 import React from 'react'
-import { useNavigate,Form,useActionData} from 'react-router-dom'
+import { useNavigate,Form,useActionData,redirect} from 'react-router-dom'
 import Formulario from '../components/Formulario'
+import { agregrarCliente } from '../data/Clientes'
 import Error from '../components/Error'
 /**
  * Usare un nuevo componente que me da router dom
@@ -32,6 +33,14 @@ export async function action({request}){//este formulario se asocia en el main j
 
   //validacion del formulairo
   const errors =[]
+
+  //tambien checamos si el email es valido
+  const email = formData.get('email')
+  let regex = new RegExp("([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])");
+  if(!regex.test(email)){
+    errors.push("El email no es valido")
+  }
+  
   if(Object.values(datos).includes('')){
     errors.push("Todos los campos son obligatorios")
   }
@@ -40,7 +49,8 @@ export async function action({request}){//este formulario se asocia en el main j
   if(Object.keys(errors).length){
     return errors
   }
-
+   await agregrarCliente(datos)
+  return redirect('/')
  
 }
 
@@ -69,7 +79,7 @@ const NuevoCliente = () => {
       </div>
       <div className='bg-white shadow rounded-md md:w-3/4 mx-auto px-5 py-10'>
         {errores?.length && errores.map((error,index)=><Error key={index}>{error}</Error>  )}
-        <Form action="" method='post'>
+        <Form action="" method='' noValidate>
            <Formulario/>
             <input 
             className='text-white bg-blue-800 py-2 px-4 mt-5 rounded-md w-full uppercase font-bold hover:bg-blue-900'

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import Layout from './components/Layout'
 import './index.css'
 import Index,{loader as clientesLoader} from './pages'
+import { ErorrPage } from './components/ErrorPage'
 import NuevoCliente,{action as nuevoClienteAction} from './pages/NuevoCliente'
 //*para usar las funciones y el objeto es necesario instalar
 //*la libreria de routing que este disponible para react
@@ -17,7 +18,8 @@ import {createBrowserRouter,RouterProvider} from 'react-router-dom'
         {
           index:true,
           element: <Index/>,
-          loader: clientesLoader
+          loader: clientesLoader,
+          errorElement: <ErorrPage/>
         },
       {//este children es para que se pueda renderizar el header en todos los componentes
       path:'/clientes/nuevos',

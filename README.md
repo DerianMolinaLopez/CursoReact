@@ -26,3 +26,10 @@
 - Consultar una API por medio de un efecto
 - Styled components
 - Cutom hooks
+
+## 4. CRM de clientes
+### conocimientos adquiridos
+- uso simple de rutas con react-router-dom
+- puebas de una API dalsa con json-server
+- comunicacion de actions y loaders de componente a la ruta
+

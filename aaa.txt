@@ -1,0 +1,1 @@
+postgres://root:OBiUrakEN0M2j3fuxpPUbzfXMYw9QAug@dpg-cme2c3ol5elc73ckgbo0-a.oregon-postgres.render.com/registro_guitarra

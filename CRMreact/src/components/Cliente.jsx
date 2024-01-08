@@ -3,7 +3,7 @@ import { useNavigate, Form, redirect ,useActionData} from 'react-router-dom'
 import { eliminarCliente } from '../data/Clientes'
 
 export async function   action({ params }) {
-    console.log("accion de eliminacion")
+  
     await eliminarCliente(params.id)
     return redirect('/')
 }

@@ -1,9 +1,8 @@
 export const MARCAS = [
-   {id:1, nombre:'America no'},
-   {id:2, nombre:'Americano'},
-   {id:3, nombre:'Americano'},
-   {id:4, nombre:'Americano'},
-   {id:5, nombre:'Americano'},
+   {id:1, nombre:'americano'},
+   {id:2, nombre:'europeo'},
+   {id:3, nombre:'asiatico'},
+
 ]
 const YEAR_MAX = new Date().getFullYear()
 

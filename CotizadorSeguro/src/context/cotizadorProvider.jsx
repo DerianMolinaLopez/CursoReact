@@ -40,7 +40,7 @@ const cotizarSeguro = () => {
     resultado *=calcularPlan(datos.plan)
     resultado = parseFloat(resultado).toFixed(2)
     resultado = formatearCantidades(resultado)
-    console.log(resultado)
+    
     setCargando(true)
     setTimeout(()=>{
         setCargando(false)
@@ -60,7 +60,7 @@ const cotizarSeguro = () => {
                 resultadoGlobal,
                 cargando,
                 setCargando,
-                resultadoGlobal
+               
            }}
            error
         >

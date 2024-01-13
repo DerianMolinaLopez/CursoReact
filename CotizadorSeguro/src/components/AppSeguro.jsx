@@ -5,7 +5,7 @@ import Spinner from './Spinner'
 import Resultado from './Resultado'
 const AppSeguro = () => {
   const {resultadoGlobal,cargando} = useCotizador()
-  console.log(resultadoGlobal)
+
   return (
     <>
     <header className='my-10'>

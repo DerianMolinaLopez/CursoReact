@@ -33,6 +33,13 @@
 - puebas de una API dalsa con json-server
 - comunicacion de actions y loaders de componente a la ruta
 
-# 4. Cotizador de seguro
+# 5. Cotizador de seguro
 ### Conocimientos adquiridos
 - Uso simple del provider y envoltura de la aplicacion para variables globales
+- 
+## 6. Mini app del clima
+>[!CAUTION]
+>No esta terminado por la volatilidad de la api
+- Prodfundiazmos con el provider
+- efectos globales
+- consulta de API

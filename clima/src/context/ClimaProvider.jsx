@@ -26,7 +26,7 @@ const ClimaProvider = ({children}) => {
            const urlLan = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${appID}`
            console.log(urlLan)
              const {data:clima} = await axios(urlLan)
-            console.log(clima)
+            console.log(urlclima)
         }catch(error){
             console.log(error)
         }

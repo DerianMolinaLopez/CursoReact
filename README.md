@@ -33,3 +33,6 @@
 - puebas de una API dalsa con json-server
 - comunicacion de actions y loaders de componente a la ruta
 
+# 4. Cotizador de seguro
+### Conocimientos adquiridos
+- Uso simple del provider y envoltura de la aplicacion para variables globales

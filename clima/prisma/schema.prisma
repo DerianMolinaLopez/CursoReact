@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+//!creamos los modelos usando la palabra reservada model
+model Productos {
+  id Int @id @default(autoincrement())
+  //estoy nombrando este campo como un id, pero ese @id es lo que le da el comportamiento de un di cmom tal
+  nombre String
+  precio Float
+  categoria Categoria @relation(field:[categoriaID] references:[id]) //esta es mi relacion junto con el decorador
+  categoriaID Int //este es el campo que se va a guardar en la base de datos
+  imagen String ? //cuando guardas imagenes normalmente es por medio de una cadena de texto
+  //agregar ell signo de interrogacion al final de un campo, significa que ese campo es opcional  
+}
+//? cuadno hacemos la relacion el error, no se va a quitar hasta que hagamos la relacion en el modelo que conecta
+//!creamos el segundo modelo igual como lo hicimos anteriormente
+model Categoria {
+  id Int @id @default(autoincrement())
+  nombre String
+  productos Productos []//cuando le agrego los crchetes es por que es de una relacion de muchos mientras que el otro se queda como de uno
+  icono String 
+}
+//al igual como las bases de datos, podemos relacionar los modelos como si fuera
+//entidad realcion

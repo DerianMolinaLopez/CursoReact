@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { QuioscoContext } from '../context/quioscoProvider'; // Asegúrate de que la ruta al archivo QuioscoProvider es correcta
+import { QuioscoContext } from '../context/quioscoProvider'; 
 
 const useQuiosco = () => {
   return useContext(QuioscoContext);

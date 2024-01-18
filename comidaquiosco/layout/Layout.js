@@ -4,9 +4,12 @@ export default function Layout({children,pagina}) {
     
     return(
 
+        <>
         <Head>
-            <tittle>cafe - {pagina}</tittle>
-            <meta name="desctiption" content="quiosco de cafe"/>
+        <tittle>cafe - {pagina}</tittle>
+        <meta name="desctiption" content="quiosco de cafe"/>
+        </Head>
+          
             <div className='md: flex'>
                 <aside className='md:w-4/12 xl:w-1/4 2xl:2-1/5'>
                     <SideBar></SideBar>
@@ -15,6 +18,8 @@ export default function Layout({children,pagina}) {
                     {children}
                 </main>
             </div>
-        </Head>
+        
+        </>
+          
     )
 }

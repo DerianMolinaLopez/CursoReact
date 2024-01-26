@@ -6,7 +6,7 @@ import { formatearDinero } from '../helpers/formatearDinero'
 const Producto = ({producto}) => {
   const {handleSetProducto,handleModal,modal}= useQuiosco()
     const {nombre,precio,imagen} = producto
-    console.log(imagen)
+   
   return (
     <div className='border p-3'>
       <Image

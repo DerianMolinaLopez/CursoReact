@@ -15,8 +15,17 @@ const QuioscoProvider = ({ children }) => {
     //console.log(data)
     setCategorias(data);
   };
-  const handleAgregarPedido = ({categoriaId,imagen,producto}) =>{//!exclucion de informacion
-     setPeiddo([...pedido,producto])
+  const handleAgregarPedido = ({categoriaId,imagen,...producto}) =>{//!exclucion de informacion
+    if(pedido.some(pedidoState => pedidoState.id === producto.id)){
+      //actualizamos en caso de que ya este el prdido registrado
+
+      const pedidoActualizado = pedido.map(pedidoState => pedidoState.id === producto.id ? producto : pedidoState)
+      setPeiddo(pedidoActualizado)
+    }else{
+      //caso contrario solo agregamos la cantidad
+      setPeiddo([...pedido,producto])
+    }
+     
   }
  // console.log(categorias)
   const handleClickCategoria = id => {
@@ -50,7 +59,8 @@ const QuioscoProvider = ({ children }) => {
         handleClickCategoria,
         handleSetProducto,
         handleModal,
-        modal
+        modal,
+        pedido
       }}
     >
       {children}

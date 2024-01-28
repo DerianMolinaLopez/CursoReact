@@ -43,3 +43,14 @@
 - Prodfundiazmos con el provider
 - efectos globales
 - consulta de API
+# 7. Quiosco de comida para clientes
+### conocimientos adquiridos
+>[!CAUTION]
+> cabe a destacar que esta version de nextjs es la 12
+
+- crear aplicacion de nextjs
+- configuracion de prisma
+- modelado de datos en prisma
+- rutas de nextjs
+- consultas a la api por medio de los directorios
+- 

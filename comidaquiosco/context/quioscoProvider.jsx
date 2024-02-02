@@ -1,11 +1,13 @@
 
 import { createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import {useRouter} from 'next/router'
 import axios from "axios";
 
 const QuioscoContext = createContext();
 
 const QuioscoProvider = ({ children }) => {
+  const router = useRouter()
   const [categorias, setCategorias] = useState([]);
   const [pedido, setPeiddo] = useState([])
   const [modal, setMoal] = useState(false)
@@ -40,6 +42,9 @@ const QuioscoProvider = ({ children }) => {
   const handleClickCategoria = id => {
     //console.log(id)
     const categoria = categorias.filter(cat => cat.id === id)
+    setCategoriaActual(categoria[0])
+    //cuando estamos en la pagina de resumen, esto me permite ir a la pagina principal de una categoria
+    router.push('/')
 
     setCategoriaActual(categoria[0])
   }

@@ -54,7 +54,11 @@ const QuioscoProvider = ({ children }) => {
   useEffect(() => {
     obtenerCategorias();
   }, []);
-
+  const handleEditarCantidades = id =>{
+    const pedidoActualizar = pedido.filter(pedidos=>pedidos.id===id)
+    setProducto(pedidoActualizar[0])
+    setMoal(!modal)
+  }
 
   // console.log(categorias);
   return (
@@ -71,7 +75,8 @@ const QuioscoProvider = ({ children }) => {
         modal,
         pedido,
         paso,
-        handleChangePaso
+        handleChangePaso,
+        handleEditarCantidades
       }}
     >
       {children}

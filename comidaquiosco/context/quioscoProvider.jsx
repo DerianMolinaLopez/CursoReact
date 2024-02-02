@@ -46,8 +46,9 @@ const QuioscoProvider = ({ children }) => {
   const handleModal = () => {
     setMoal(!modal)
   }
+  //para poder filtrar el producto desde el resumen es necesario de mi pedido, extraer el producto que necesito
   const handleSetProducto = (producto) => {
-    console.log(producto)
+  
     setProducto(producto)
   }
 
@@ -58,6 +59,11 @@ const QuioscoProvider = ({ children }) => {
     const pedidoActualizar = pedido.filter(pedidos=>pedidos.id===id)
     setProducto(pedidoActualizar[0])
     setMoal(!modal)
+  }
+  const handleEliminarProducto = id =>{
+    console.log(id)
+    const productosFiltrados = pedido.filter(pedido=>pedido.id!==id)
+    setPeiddo(productosFiltrados)
   }
 
   // console.log(categorias);
@@ -76,7 +82,8 @@ const QuioscoProvider = ({ children }) => {
         pedido,
         paso,
         handleChangePaso,
-        handleEditarCantidades
+        handleEditarCantidades,
+        handleEliminarProducto
       }}
     >
       {children}

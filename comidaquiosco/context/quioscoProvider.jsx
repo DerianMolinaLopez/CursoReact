@@ -7,20 +7,32 @@ import axios from "axios";
 const QuioscoContext = createContext();
 
 const QuioscoProvider = ({ children }) => {
+  const [nombre,setNombre] = useState('')
   const router = useRouter()
   const [categorias, setCategorias] = useState([]);
   const [pedido, setPeiddo] = useState([])
   const [modal, setMoal] = useState(false)
   const [categoriaActual, setCategoriaActual] = useState({ id: 1, icono: 'cafe', nombre: 'Café' });
   const [producto, setProducto] = useState({})
+  const [total,setTotal] = useState(0)
   const [paso,setPaso]= useState(1)
+
+  //por cada cambio en el pedido, se actualiza el total
+  useEffect(()=>{
+    const nuevoTotal = pedido.reduce((acumulado,actual)=>acumulado+actual.precio*actual.cantidad,0)
+    setTotal(nuevoTotal)
+  },[pedido])
+
+
+
+
   const obtenerCategorias = async () => {
     const { data } = await axios("/api/categorias");
-    //console.log(data)
+  
     setCategorias(data);
   };
   const handleChangePaso = (paso) => {
-    console.log(paso)
+  
     setPaso(paso)
 
   }
@@ -38,9 +50,9 @@ const QuioscoProvider = ({ children }) => {
     }
 
   }
-  // console.log(categorias)
+  
   const handleClickCategoria = id => {
-    //console.log(id)
+    
     const categoria = categorias.filter(cat => cat.id === id)
     setCategoriaActual(categoria[0])
     //cuando estamos en la pagina de resumen, esto me permite ir a la pagina principal de una categoria
@@ -66,12 +78,18 @@ const QuioscoProvider = ({ children }) => {
     setMoal(!modal)
   }
   const handleEliminarProducto = id =>{
-    console.log(id)
+    
     const productosFiltrados = pedido.filter(pedido=>pedido.id!==id)
     setPeiddo(productosFiltrados)
   }
+  //peticion a la api para enviar todo el conjunto de ordenes
+  const colocarOrden =async (e) => {
+    e.preventDefault()
+    console.log(pedido)
+    console.log(nombre)   
+   
+  }
 
-  // console.log(categorias);
   return (
     <QuioscoContext.Provider
       value={{
@@ -88,7 +106,11 @@ const QuioscoProvider = ({ children }) => {
         paso,
         handleChangePaso,
         handleEditarCantidades,
-        handleEliminarProducto
+        handleEliminarProducto,
+        nombre,
+        setNombre,
+        colocarOrden,
+        total
       }}
     >
       {children}

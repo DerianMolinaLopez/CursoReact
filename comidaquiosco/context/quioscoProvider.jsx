@@ -85,6 +85,15 @@ const QuioscoProvider = ({ children }) => {
   //peticion a la api para enviar todo el conjunto de ordenes
   const colocarOrden =async (e) => {
     e.preventDefault()
+
+    try{
+      //las peticiones en caso de post, van acompa;adas del objeto qeu contiene de los datos a mandar 
+      const {data} = await axios.post('/api/ordenes',{nombre,pedido,total,fecha:Date.now().toString()})
+      //si trabajo con prisma el json debe tener la misma estructura que el modelo de prisma
+      console.log(data)
+    }catch(error){
+      console.log(error)
+    }
     console.log(pedido)
     console.log(nombre)   
    

@@ -53,4 +53,4 @@
 - modelado de datos en prisma
 - rutas de nextjs
 - consultas a la api por medio de los directorios
-- 
+- peticiones desde react

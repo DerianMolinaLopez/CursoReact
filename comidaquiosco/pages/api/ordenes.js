@@ -1,3 +1,5 @@
+import {PrismaClient} from '@prisma/client'
+const prisma = new PrismaClient()
 /**
  * 
  * @param {*} req -->aquello que tu envias al servidor 
@@ -5,7 +7,15 @@
  */
 export default async function handler(req, res) {
     if(req.method == "POST"){
-        console.log(req.body)
-        res.json({metodo:"METODO POST"})
+        /**CUIDADO CON LA DISLEXIA */
+        const orden = await prisma.orden.create({
+            data:{
+                nomrbre:req.body.nombre,
+                total:req.body.total,
+                pedido:req.body.pedido,
+                fecha:req.body.fecha
+            }
+        })
+        res.json(orden)
     }
 }

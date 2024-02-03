@@ -6,7 +6,6 @@ export default async function handler(req, res) {
         categoriaId:1
     }
   })
- // console.log(categorias)
   res.status(200).json(productos)
 }
 //!cuando agregamos ese where cierto me da todo los productos de la categoria

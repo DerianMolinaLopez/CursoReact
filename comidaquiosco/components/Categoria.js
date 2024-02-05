@@ -20,8 +20,8 @@ const iconos = {
 }
 
 const Categoria = ({ categoria }) => {
-  const {handleClickCategoria,categoriaActual} = useQuiosco();
-   const { nombre, icono,id } = categoria;
+  const {handleClickCategoria,categoriaActual,setHayCategoria} = useQuiosco();
+   const { nombre, icono,id} = categoria;
 
   return (
     <div className= {` flex items-center g-4 w-full border p-4 hover:bg-amber-400 ${categoriaActual.id== id? 'bg-amber-400':''}`} >
@@ -32,7 +32,9 @@ const Categoria = ({ categoria }) => {
         alt="Imagen Icono"
       />
      <button 
-     onClick={()=>handleClickCategoria(id)}
+     onClick={()=>{
+      setHayCategoria(true)
+      handleClickCategoria(id)}}
      className="text-2xl font-bold hover:cursor-pointer">{nombre}</button> 
 
     </div>

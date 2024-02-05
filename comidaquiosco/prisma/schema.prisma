@@ -32,6 +32,7 @@ model Orden {
   fecha String
   total Float
   pedido Json
+  estado Boolean @default(false)
 }
 //!para guardar la tabla en la abse de datos, es necesario npx migrate dev, para poder crear la tabla en la base de datos
 //la migracion hace que se sincronice los cambios con la base de datos

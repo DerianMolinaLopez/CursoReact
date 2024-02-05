@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import SideBar from '../components/SideBar';
-
+import Presentacion from '../components/Presentacion';
 import Modal from 'react-modal'
 import Pasos from '../components/Pasos';
 import ModalProducto from '../components/ModalProducto';
@@ -8,6 +8,7 @@ import useQuiosco from '../hook/useQuiosco';
 //import '../styles/ReactToastify.css'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 //!queda pendiente arreglar el toastContainer, la aplicaicon truena 
 const customStyles = {
     content: {
@@ -21,7 +22,9 @@ const customStyles = {
   };
   Modal.setAppElement('#__next');  
 export default function Layout({children,pagina}) {
-    const {modal} = useQuiosco() 
+    const {modal,hayCategoria,setHayCategoria,categoriaActual} = useQuiosco()
+    console.log(categoriaActual) 
+ //   console.log(pagina)
     return(
 
         <>
@@ -37,7 +40,9 @@ export default function Layout({children,pagina}) {
                 <main className='w-8/12 xl:w-3/4 2xl:2-4/5 h-screen overflow-y-scroll'>
                     <Pasos></Pasos>
                     <div className='p-10'>
-                        {children}
+                    {hayCategoria ? children : <Presentacion />}
+
+                       
                     </div>
                     
                 </main>

@@ -7,12 +7,13 @@ import axios from "axios";
 const QuioscoContext = createContext();
 
 const QuioscoProvider = ({ children }) => {
+  const [hayCategoria,setHayCategoria] = useState(false)
   const [nombre,setNombre] = useState('')
   const router = useRouter()
   const [categorias, setCategorias] = useState([]);
   const [pedido, setPeiddo] = useState([])
   const [modal, setMoal] = useState(false)
-  const [categoriaActual, setCategoriaActual] = useState({ id: 1, icono: 'cafe', nombre: 'Café' });
+  const [categoriaActual, setCategoriaActual] = useState({ });
   const [producto, setProducto] = useState({})
   const [total,setTotal] = useState(0)
   const [paso,setPaso]= useState(1)
@@ -93,9 +94,12 @@ const QuioscoProvider = ({ children }) => {
       setCategoriaActual({ id: 1, icono: 'cafe', nombre: 'Café' })
       setPeiddo([])
       setNombre('')
+      
+      setCategoriaActual({})
       setTotal(0)
       toast.success('Orden colocada con exito')
       setTimeout(()=>{
+        setHayCategoria(false)
         router.push('/')
       },3000)
    
@@ -125,7 +129,9 @@ const QuioscoProvider = ({ children }) => {
         nombre,
         setNombre,
         colocarOrden,
-        total
+        total,
+        hayCategoria,
+        setHayCategoria
       }}
     >
       {children}

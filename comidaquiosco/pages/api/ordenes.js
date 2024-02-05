@@ -6,6 +6,16 @@ const prisma = new PrismaClient()
  * @param {*} res -->la respuesta del servidor hacia el cliente
  */
 export default async function handler(req, res) {
+    //obtener ordenes
+const ordenes = await prisma.orden.findMany({
+    where:{
+        estado: false
+    }
+})
+console.log(ordenes)
+res.json(ordenes)
+    //crear ordenes
+    
     if(req.method == "POST"){
         /**CUIDADO CON LA DISLEXIA */
         const orden = await prisma.orden.create({

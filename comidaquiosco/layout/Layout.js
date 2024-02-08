@@ -23,13 +23,11 @@ const customStyles = {
   Modal.setAppElement('#__next');  
 export default function Layout({children,pagina}) {
     const {modal,hayCategoria,setHayCategoria,categoriaActual} = useQuiosco()
-    console.log(categoriaActual) 
- //   console.log(pagina)
+
     return(
 
         <>
         <Head>
-        <tittle>cafe - {pagina}</tittle>
         <meta name="desctiption" content="quiosco de cafe"/>
         </Head>
           

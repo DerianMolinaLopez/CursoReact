@@ -17,11 +17,11 @@ const total = () => {
   }, [pedido, comprobarPedido])
   return (
     <Layout pagina="resumen">
-      <h1 className='text-4xl fnot-black'>Total</h1>
+      <h1 className='text-4xl font-black'>Total</h1>
       <p className='text-2xl my-10'>Cofirma tu pedido a continuacion</p>
       <form onSubmit={colocarOrden}>
         <div>
-          <label className='block uppercase tex-slate-800 text-xl'>nombre</label>
+          <label className='block uppercase tex-slate-800 text-xl'>¿A nombre de quien es el pedido?</label>
           <input type='text' 
           value={nombre}
           onChange={(e)=>setNombre(e.target.value)}

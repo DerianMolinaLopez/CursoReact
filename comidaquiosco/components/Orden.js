@@ -4,12 +4,9 @@ import { toast } from 'react-toastify'
 import axios from 'axios'
 import { formatearDinero } from '../helpers/formatearDinero'
 const Orden = ({orden}) => {
-    console.log(orden)
+   
     const {id, nomrbre,total,pedido}=orden
-    console.log(pedido)
-     pedido.forEach(element => {
-      console.log(  element.imagen)
-     });
+   
     
     const completarOrden = async() => {
   try {

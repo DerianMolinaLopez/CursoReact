@@ -12,7 +12,7 @@ const ordenes = await prisma.orden.findMany({
         estado: false
     }
 })
-console.log(ordenes)
+
 res.json(ordenes)
     //crear ordenes
     

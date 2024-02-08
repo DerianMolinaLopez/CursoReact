@@ -1,11 +1,18 @@
 //ahora usando lo que seria ECM
 import express from 'express';
-import conectar from './config/db';
+import conectar from './config/db.js';
+import dotenv from "dotenv";
 const app = express()
+dotenv.config()
+console.log(process.env.MONGO_URI)
+conectar()
+const PORT = process.env.PORT || 3000
+
 app.listen(3000, () => { 
-    console.log("el puerto corriendo")
+    console.log(`El servidor esta corriendo en el puerto ${PORT}`)
    }
 )
+
 
 
 /*//passos para crear el servidor en express rapidamente

@@ -2,10 +2,20 @@
 import express from 'express';
 import conectar from './config/db.js';
 import dotenv from "dotenv";
+import router from './api/usuarioRoute.js';
 const app = express()
 dotenv.config()
 console.log(process.env.MONGO_URI)
 conectar()
+/*
+!si queremos ver la aplicacion en el puerto asignado
+!no va a mostrar nada ya que funciona mediante una peticion get
+!asi que es necesario hacer una peticion al menos para renderizar 
+!la pagina principal
+
+*/
+
+app.use("/api/usuarios",router)
 const PORT = process.env.PORT || 3000
 
 app.listen(3000, () => { 

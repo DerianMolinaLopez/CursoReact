@@ -4,6 +4,7 @@ import conectar from './config/db.js';
 import dotenv from "dotenv";
 import router from './api/usuarioRoute.js';
 const app = express()
+app.use(express.json())//esto me permite leer datos que yo pueda enviar desde un formulario o desde postman
 dotenv.config()
 console.log(process.env.MONGO_URI)
 conectar()
@@ -14,7 +15,9 @@ conectar()
 !la pagina principal
 
 */
-
+app.get("/",(req,res)=>{
+    res.send("Hola Mundo")
+})
 app.use("/api/usuarios",router)
 const PORT = process.env.PORT || 3000
 

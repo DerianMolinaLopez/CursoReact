@@ -5,6 +5,7 @@ const conectar = async () => {
         console.log(process.env.MONGO_URI)
         const connection = await mongoose.connect(process.env.MONGO_URI,
             {
+                dbName: "uptask",//campo obligatorio para mandar la declaracion de la bd
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
             }

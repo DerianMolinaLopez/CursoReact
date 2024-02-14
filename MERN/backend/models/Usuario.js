@@ -1,5 +1,5 @@
-import {moongose} from  'mongoose';
-
+import moongose from "mongoose"
+import bcrypt, { genSalt } from "bcrypt"
 const usuarioSchema = new moongose.Schema(
     {
         nombre:{
@@ -30,5 +30,13 @@ const usuarioSchema = new moongose.Schema(
     }
     
 )
+//antes de que ejecute la insercion vamos a hashear las contraseñas
+usuarioSchema.pre("save",async function(next){
+    if(!this.isModified('password')){
+        next()
+    }
+    const salt = await bcrypt.genSalt(10);
+    this.password = await  bcrypt.hash(this.password, salt);
+})
 const Usuario = moongose.model('Usuario',usuarioSchema)
 export default Usuario;

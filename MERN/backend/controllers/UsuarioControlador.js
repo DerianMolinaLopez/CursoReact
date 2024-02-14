@@ -1,4 +1,5 @@
 import Usuario from "../models/Usuario.js"
+import generearId from "../helpers/generarId.js"
 const Usuarios = (req,res)=>{
     res.send("desde la api")
  }
@@ -15,6 +16,7 @@ const Usuarios = (req,res)=>{
 
     try{
       const usuario = new Usuario(req.body)
+      usuario.token = generearId()
       const usuarioAlmacenado = await usuario.save()
       res.json(usuarioAlmacenado)
       console.log(usuario)

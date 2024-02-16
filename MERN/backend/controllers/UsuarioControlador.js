@@ -1,5 +1,6 @@
 import Usuario from "../models/Usuario.js"
 import generearId from "../helpers/generarId.js"
+import generarJWT from "../helpers/generarJWT.js"
 const Usuarios = (req,res)=>{
     res.send("desde la api")
  }
@@ -48,8 +49,10 @@ const Usuarios = (req,res)=>{
    res.json({
       _id: usuario._id,
       nombre:usuario.nombre,
-      email:usuario.email
+      email:usuario.email,
+      tokem:generarJWT(usuario.nombre)
    })
+  
   }else{
    error.message = "El password es incorrecto"
    return res.status(400).json({msg:error.message})

@@ -1,5 +1,5 @@
 import express from 'express'
-import { Usuarios,CrearUsuarios } from '../controllers/UsuarioControlador.js' 
+import { Usuarios,CrearUsuarios,autenticar } from '../controllers/UsuarioControlador.js' 
 const router = express.Router()
 
 
@@ -7,6 +7,7 @@ const router = express.Router()
 //*autenticacioncreacion, registro y eliminacion de usuarios 
 router.get("/",Usuarios)//?comunicado
 router.post("/",CrearUsuarios)//?comunicado
+router.post("/login",autenticar)
 
 /*
 !debo tener cuidado, en el archvio del index, debo usar "use"

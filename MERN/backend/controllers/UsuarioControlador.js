@@ -26,7 +26,38 @@ const Usuarios = (req,res)=>{
     }
    
  }
+ const autenticar =async (req,res)=>{//-->comunicado
+ const {email,password} = req.body
+ const error = new Error()
+   //comprobar si el usuario existe 
+  const usuario = await Usuario.findOne({email})
+  console.log(usuario)
+   if(!usuario){
+      error.message = "El usuario no existe"
+      return res.status(400).json({msg:error.message})
+   }
+ //comprobamos si esta confirmado
+ if(!usuario.confirmado){
+   error.message = "El usuario no esta confirmado"
+   return res.status(400).json({msg:error.message})
+}
+  //comprobamos el password
+  //tomando en cuenta que esta hasheado
+  if(await usuario.compararPassword(password)){
+   console.log("ees correcto, estas adentro")
+   res.json({
+      _id: usuario._id,
+      nombre:usuario.nombre,
+      email:usuario.email
+   })
+  }else{
+   error.message = "El password es incorrecto"
+   return res.status(400).json({msg:error.message})
+  }
+ }
+ 
  export {
     Usuarios,
-    CrearUsuarios
+    CrearUsuarios,
+    autenticar
  }

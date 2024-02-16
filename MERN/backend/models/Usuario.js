@@ -38,5 +38,10 @@ usuarioSchema.pre("save",async function(next){
     const salt = await bcrypt.genSalt(10);
     this.password = await  bcrypt.hash(this.password, salt);
 })
+//comparamos las contraseñas, el detalle es que esta hasheada, pero bcrypt me permite hacer una comparacion
+//a pesar de que los datos esten ocultos
+usuarioSchema.methods.compararPassword = async function(password){
+    return await bcrypt.compare(password,this.password)
+}
 const Usuario = moongose.model('Usuario',usuarioSchema)
 export default Usuario;

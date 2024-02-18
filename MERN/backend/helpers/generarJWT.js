@@ -1,7 +1,11 @@
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 const generarJWT = (nombre) => {
-   // sintaxis
-    // (Nombre,palabra clave, expriacion)
-    return jwt.sign({nombre},process.env.SECRET_JWT_SEED,{expiresIn:"2h"})
-}
-export default generarJWT
+
+    return jwt.sign({nombre}, process.env.JWT_KEY, {expiresIn: "2h"});
+ }
+ 
+export default generarJWT;

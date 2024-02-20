@@ -123,12 +123,36 @@ const comprobarToken = async(req,res)=>{
   
   }
 }
+const nuevoPassword = async(req,res)=>{
+  const {password} = req.body
+  const {token} = req.params
+  const usuario = await Usuario.findOne({token})
+  if(usuario){
+    usuario.password = password
+    usuario.token = ""
+    try{
+      await usuario.save()
+      res.status(200).json({msg:"el nuevo password fue guardado"})
+    }catch(error){
+      console.log(error)
+    }
+    
+  }else{
+    return res.status(400).json({msg:"el token no es valido"})
+  
+  }
+}
+const perfil = (req,res)=>{
+  console.log("desde el perfil")
+}
 
  export {
     Usuarios,
+    perfil,
     lecturaBody,
     CrearUsuarios,
     comprobarToken,
+    nuevoPassword,
     autenticar,
     recuperar,
     confirmar

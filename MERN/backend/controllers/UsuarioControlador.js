@@ -1,6 +1,7 @@
 import Usuario from "../models/Usuario.js"
 import generearId from "../helpers/generarId.js"
 import generarJWT from "../helpers/generarJWT.js"
+import e from "express"
 const Usuarios = (req,res)=>{
     res.send("desde la api")
  }
@@ -84,10 +85,51 @@ const Usuarios = (req,res)=>{
    
    }
  }
- 
+
+ //confirmacion de la lectura del cuetpo de un json
+ const lecturaBody = async(req,res) =>{
+  console.log(req.body)
+  const {nombre }= res.body
+  return res.status(200).json({msg:"enviado"})
+ }
+ const recuperar = async(req,res)=>{
+  const {email} = req.body
+  const usuario = await Usuario.findOne({email})
+  if (!usuario) {
+    return res.status(400).json({ msg: "El usuario no existe" });
+  }
+  try{
+    usuario.token = generearId()//le creamos un nuevo token al usuario
+    console.log(usuario.token)
+    await usuario.save()
+    res.status(200).json({msg:"Hemos enviado un email con las instrucciones"})
+  
+  }catch(error){
+    console.log(error)
+  }
+    
+ }
+const comprobarToken = async(req,res)=>{
+  const {token} = req.params//el params es para extraer valores de una url, y body es para valores del json
+  const tokenValido = await Usuario.findOne({token})//buscamos el usuario a quien le generaron el token
+  if(tokenValido){
+    res.status(200).json({
+      msg:"el token es valido"
+    })
+  }else{
+    res.status(400).json({
+      msg:"el token no es valido"
+    })
+  
+  }
+}
+
  export {
     Usuarios,
+    lecturaBody,
     CrearUsuarios,
+    comprobarToken,
     autenticar,
+    recuperar,
     confirmar
  }

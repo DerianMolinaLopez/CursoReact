@@ -18,7 +18,7 @@ const Usuarios = (req,res)=>{
 
     try{
       const usuario = new Usuario(req.body)
-      usuario.token = generearId()
+      usuario.token = generarJWT(usuario.nombre,usuario.id)
       const usuarioAlmacenado = await usuario.save()
       res.json(usuarioAlmacenado)
       console.log(usuario)
@@ -53,7 +53,7 @@ const Usuarios = (req,res)=>{
        _id: usuario._id,
        nombre: usuario.nombre,
        email: usuario.email,
-       token: generarJWT(usuario.nombre),
+       token: generarJWT(usuario.nombre,usuario._id),
      });
  
    } else {
@@ -99,7 +99,7 @@ const Usuarios = (req,res)=>{
     return res.status(400).json({ msg: "El usuario no existe" });
   }
   try{
-    usuario.token = generearId()//le creamos un nuevo token al usuario
+    usuario.token = generarJWT(usuario.nombre,usuario.id)//le creamos un nuevo token al usuario
     console.log(usuario.token)
     await usuario.save()
     res.status(200).json({msg:"Hemos enviado un email con las instrucciones"})

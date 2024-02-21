@@ -3,9 +3,9 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const generarJWT = (nombre) => {
+const generarJWT = (nombre,id) => {
 
-    return jwt.sign({nombre}, process.env.JWT_KEY, {expiresIn: "2h"});
+    return jwt.sign({nombre,id}, process.env.JWT_KEY, {expiresIn: "2h"});
  }
  
 export default generarJWT;

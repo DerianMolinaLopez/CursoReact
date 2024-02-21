@@ -3,6 +3,7 @@ import express from 'express';
 import conectar from './config/db.js';
 import dotenv from "dotenv";
 import router from './api/usuarioRoute.js';
+import routerProyectos from './api/proyectoRoute.js';
 const app = express()
 app.use(express.json())//esto me permite leer datos que yo pueda enviar desde un formulario o desde postman
 dotenv.config()
@@ -19,6 +20,7 @@ app.get("/",(req,res)=>{
     res.send("Hola Mundo")
 })
 app.use("/api/usuarios",router)
+app.use("/api/proyectos",routerProyectos)
 const PORT = process.env.PORT || 3000
 
 app.listen(3000, () => { 

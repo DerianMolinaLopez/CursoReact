@@ -143,6 +143,7 @@ const nuevoPassword = async(req,res)=>{
   }
 }
 const perfil = (req,res)=>{
+  const {usuario} = req //se supone que una vez pasado el middleware, el usuario se queda en esta parte
   console.log("desde el perfil")
 }
 

@@ -5,7 +5,7 @@ dotenv.config();
 
 const generarJWT = (nombre,id) => {
 
-    return jwt.sign({nombre,id}, process.env.JWT_KEY, {expiresIn: "2h"});
+    return jwt.sign({nombre,id}, process.env.JWT_KEY);
  }
  
 export default generarJWT;

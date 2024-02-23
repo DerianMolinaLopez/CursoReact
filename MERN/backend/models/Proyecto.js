@@ -2,7 +2,7 @@ import moongose, { Types } from 'mongoose';
 const ProyectoSchema = moongose.Schema(
     {
         nombre:{
-            Type:String,
+            type:String,
             trim:true,
             required:true
         },
@@ -18,6 +18,11 @@ const ProyectoSchema = moongose.Schema(
         creador:{
             type:moongose.Schema.Types.ObjectId,
             ref:"Usuario"
+        },
+        cliente:{
+            type:String,
+             trim: true,
+             required:true
         },
         colaboradores:[
             {

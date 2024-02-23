@@ -22,7 +22,16 @@ router.post("/olvidado",recuperar)
 router.route("/olvidado/:token").get(comprobarToken).post(nuevoPassword)
 
 router.get("/perfil",checkAuth,perfil)
-
+//middleware de prueba para ver por que no se conecta uno con otro
+router.get("/midd",
+           (req,res,next)=>{
+            console.log("desde el primer filtro")
+            next()//mandamos a que se ejecute el otro middleware
+           },
+           (req,res)=>{
+            console.log("desde el segundo filtro")
+            res.send("desde el segundo filtro")
+           }) //--> este middleware si esta conectado
 /*
 !debo tener cuidado, en el archvio del index, debo usar "use"
 !para que en esta parte me deje usar la "/" como raiz de la api

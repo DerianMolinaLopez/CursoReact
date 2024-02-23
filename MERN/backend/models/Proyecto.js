@@ -30,6 +30,9 @@ const ProyectoSchema = moongose.Schema(
                 ref:"Usuario"
             }
         ]
+    },
+    {
+        timestamps:true//-->crea las columnas de created at y updated at
     }
 )
 const Proyecto = moongose.model("Proyecto",ProyectoSchema)
